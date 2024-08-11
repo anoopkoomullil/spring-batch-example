@@ -1,0 +1,25 @@
+spring:
+  batch:
+    initialize-schema: ALWAYS
+    job:
+      enabled: false
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/batch
+    username: postgres
+    password: root
+  jpa:
+    hibernate:
+      ddl-auto: create
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+  data:
+    mongodb:
+      username: alibou
+      password: alibou
+      host: localhost
+      port: 27017
+      database: notification
+      authentication-database: admin
+

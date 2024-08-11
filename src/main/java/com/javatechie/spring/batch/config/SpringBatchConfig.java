@@ -26,11 +26,8 @@ import org.springframework.core.task.TaskExecutor;
 public class SpringBatchConfig {
 
     private JobBuilderFactory jobBuilderFactory;
-
     private StepBuilderFactory stepBuilderFactory;
-
     private CustomerRepository customerRepository;
-
 
     @Bean
     public FlatFileItemReader<Customer> reader() {
@@ -60,7 +57,7 @@ public class SpringBatchConfig {
     }
 
     @Bean
-    public CustomerProcessor processor() {
+    public CustomerProcessor processors() {
         return new CustomerProcessor();
     }
 
@@ -76,7 +73,7 @@ public class SpringBatchConfig {
     public Step step1() {
         return stepBuilderFactory.get("csv-step").<Customer, Customer>chunk(10)
                 .reader(reader())
-                .processor(processor())
+                .processor(processors())
                 .writer(writer())
                 .taskExecutor(taskExecutor())
                 .build();
